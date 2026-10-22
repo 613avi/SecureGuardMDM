@@ -85,6 +85,8 @@ interface SettingsRepository {
     suspend fun setSingleWebsiteKioskEnabled(isEnabled: Boolean)
     suspend fun getSingleWebsiteKioskUrl(): String
     suspend fun setSingleWebsiteKioskUrl(url: String)
+    suspend fun getSingleWebsiteKioskWhitelist(): String
+    suspend fun setSingleWebsiteKioskWhitelist(whitelist: String)
 
     // --- הוספת זרמים (Flows) לעדכון חי ---
     fun getKioskEnabledFlow(): Flow<Boolean>

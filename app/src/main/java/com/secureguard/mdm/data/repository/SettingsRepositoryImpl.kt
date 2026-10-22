@@ -273,6 +273,14 @@ class SettingsRepositoryImpl @Inject constructor(
         preferencesManager.saveString(PreferencesManager.KEY_KIOSK_SINGLE_WEBSITE_URL, url)
     }
 
+    override suspend fun getSingleWebsiteKioskWhitelist(): String = withContext(Dispatchers.IO) {
+        preferencesManager.loadString(PreferencesManager.KEY_KIOSK_SINGLE_WEBSITE_WHITELIST, "") ?: ""
+    }
+
+    override suspend fun setSingleWebsiteKioskWhitelist(whitelist: String) = withContext(Dispatchers.IO) {
+        preferencesManager.saveString(PreferencesManager.KEY_KIOSK_SINGLE_WEBSITE_WHITELIST, whitelist)
+    }
+
     // --- מימוש Flows לעדכון חי ---
 
     override fun getKioskEnabledFlow(): Flow<Boolean> = preferenceFlow(PreferencesManager.KEY_KIOSK_MODE_ENABLED) {

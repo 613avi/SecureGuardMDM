@@ -115,6 +115,7 @@ class KioskActivity : ComponentActivity() {
             // הצג את מסך הקיוסק
             val isSingleEnabled = runCatching { settingsRepository.isSingleWebsiteKioskEnabled() }.getOrDefault(false)
             val singleUrl = runCatching { settingsRepository.getSingleWebsiteKioskUrl() }.getOrDefault("")
+            val singleWhitelist = runCatching { settingsRepository.getSingleWebsiteKioskWhitelist() }.getOrDefault("")
 
             setContent {
                 SecureGuardTheme {
@@ -122,7 +123,7 @@ class KioskActivity : ComponentActivity() {
                         androidx.compose.ui.platform.LocalLayoutDirection provides systemDirection
                     ) {
                         if (isSingleEnabled && singleUrl.isNotEmpty()) {
-                            SingleWebsiteKioskScreen(url = singleUrl)
+                            SingleWebsiteKioskScreen(url = singleUrl, whitelist = singleWhitelist)
                         } else {
                             KioskScreen()
                         }

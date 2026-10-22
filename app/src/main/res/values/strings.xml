@@ -266,6 +266,8 @@
     <string name="kiosk_management_single_website_label">קיוסק לאתר בודד</string>
     <string name="kiosk_management_single_website_description">כאשר מופעל, המכשיר יינעל לאתר אינטרנט אחד בלבד.</string>
     <string name="kiosk_management_single_website_url_label">כתובת האתר (URL)</string>
+    <string name="kiosk_management_single_website_whitelist_label">אתרים נוספים מותרים</string>
+    <string name="kiosk_management_single_website_whitelist_description">דומיין אחד בכל שורה (למשל example.com). כל תת-הדומיינים שלו יותרו גם כן.</string>
     <string name="kiosk_content_desc_admin">מנהל A Bloq</string>
     <string name="kiosk_management_action_buttons_title">כפתורי פעולה בקיוסק</string>
     <string name="kiosk_action_wifi">Wi‑Fi</string>

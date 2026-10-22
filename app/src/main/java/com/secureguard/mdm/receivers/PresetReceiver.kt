@@ -171,6 +171,7 @@ class PresetReceiver : BroadcastReceiver() {
             config.kioskAppMonitorEnabled?.let { settingsRepository.setKioskAppMonitorEnabled(it) }
             config.kioskSingleWebsiteEnabled?.let { settingsRepository.setSingleWebsiteKioskEnabled(it) }
             config.kioskSingleWebsiteUrl?.let { settingsRepository.setSingleWebsiteKioskUrl(it) }
+            config.kioskSingleWebsiteWhitelist?.let { settingsRepository.setSingleWebsiteKioskWhitelist(it) }
             
             // --- Kiosk Mode Activation (Fix) ---
             // 1. Set LockTask packages (allows us to pin screen)

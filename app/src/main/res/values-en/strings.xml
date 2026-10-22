@@ -262,6 +262,8 @@
     <string name="kiosk_management_single_website_label">Single Website Kiosk</string>
     <string name="kiosk_management_single_website_description">When enabled, the device will be locked to a single website.</string>
     <string name="kiosk_management_single_website_url_label">Website URL</string>
+    <string name="kiosk_management_single_website_whitelist_label">Additional allowed websites</string>
+    <string name="kiosk_management_single_website_whitelist_description">One domain per line (e.g. example.com). All of its subdomains are allowed too.</string>
     <string name="kiosk_management_select_apps">Select Apps to Display</string>
     <string name="kiosk_management_monitor_label">Strict Mode</string>
     <string name="kiosk_management_monitor_description">Prevents exiting kiosk apps even for displaying images or similar, to the maximum extent</string>

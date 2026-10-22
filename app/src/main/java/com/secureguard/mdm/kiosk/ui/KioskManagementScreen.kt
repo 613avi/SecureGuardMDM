@@ -207,6 +207,15 @@ fun KioskManagementScreen(
                                             singleLine = true,
                                             shape = RoundedCornerShape(12.dp)
                                         )
+                                        OutlinedTextField(
+                                            value = uiState.singleWebsiteWhitelist,
+                                            onValueChange = { viewModel.setSingleWebsiteKioskWhitelist(it) },
+                                            label = { Text(stringResource(id = R.string.kiosk_management_single_website_whitelist_label)) },
+                                            supportingText = { Text(stringResource(id = R.string.kiosk_management_single_website_whitelist_description)) },
+                                            modifier = Modifier.fillMaxWidth(),
+                                            minLines = 3,
+                                            shape = RoundedCornerShape(12.dp)
+                                        )
                                     }
                                 }
                             }

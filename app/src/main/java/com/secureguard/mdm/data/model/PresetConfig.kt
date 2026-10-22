@@ -24,5 +24,6 @@ data class PresetConfig(
     val kioskAppMonitorEnabled: Boolean? = null,
     val autoUpdateCheckEnabled: Boolean? = null,
     val kioskSingleWebsiteEnabled: Boolean? = null,
-    val kioskSingleWebsiteUrl: String? = null
+    val kioskSingleWebsiteUrl: String? = null,
+    val kioskSingleWebsiteWhitelist: String? = null
 )

@@ -39,6 +39,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun SingleWebsiteKioskScreen(
     url: String,
+    whitelist: String = "",
     viewModel: KioskViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
@@ -82,10 +83,16 @@ fun SingleWebsiteKioskScreen(
     // חסימת כפתור Back (חוץ מניווט אחורה ב-WebView)
     var webView: WebView? by remember { mutableStateOf(null) }
     
-    // חישוב הדומיין המורשה
-    val allowedHost = remember(url) {
-        val formattedUrl = if (url.startsWith("http")) url else "https://$url"
-        Uri.parse(formattedUrl).host?.lowercase()?.removePrefix("www.") ?: ""
+    // חישוב הדומיינים המורשים: האתר הראשי + הרשימה הלבנה
+    val allowedHosts = remember(url, whitelist) {
+        (listOf(url) + whitelist.split('\n', ',', ' ', ';'))
+            .map { it.trim() }
+            .filter { it.isNotEmpty() }
+            .mapNotNull { entry ->
+                val formattedUrl = if (entry.startsWith("http")) entry else "https://$entry"
+                Uri.parse(formattedUrl).host?.lowercase()?.removePrefix("www.")?.removePrefix("*.")?.takeIf { it.isNotEmpty() }
+            }
+            .toSet()
     }
 
     BackHandler {
@@ -114,8 +121,8 @@ fun SingleWebsiteKioskScreen(
                             val newUrl = request?.url?.toString() ?: return false
                             val newHost = request.url.host?.lowercase() ?: ""
                             
-                            // אם המארח החדש ריק (למשל javascript:) או שהוא שייך לדומיין המורשה, נאפשר
-                            if (newHost.isEmpty() || newHost == allowedHost || newHost.endsWith(".$allowedHost")) {
+                            // אם המארח החדש ריק (למשל javascript:) או שהוא שייך לאחד הדומיינים המורשים (כולל תת-דומיינים), נאפשר
+                            if (newHost.isEmpty() || allowedHosts.any { newHost == it || newHost.endsWith(".$it") }) {
                                 return false
                             }
                             

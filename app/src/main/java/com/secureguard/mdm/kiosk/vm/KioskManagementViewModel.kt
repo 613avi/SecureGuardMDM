@@ -22,6 +22,7 @@ data class KioskManagementState(
     val isDefaultLauncher: Boolean = false,
     val isSingleWebsiteKioskEnabled: Boolean = false,
     val singleWebsiteUrl: String = "",
+    val singleWebsiteWhitelist: String = "",
     val enabledActions: Set<String> = emptySet()
 )
 
@@ -47,6 +48,7 @@ class KioskManagementViewModel @Inject constructor(
             val isDefault = kioskLockManager.isKioskDefaultLauncher()
             val isSingleEnabled = settingsRepository.isSingleWebsiteKioskEnabled()
             val singleUrl = settingsRepository.getSingleWebsiteKioskUrl()
+            val singleWhitelist = settingsRepository.getSingleWebsiteKioskWhitelist()
             val enabledActions = settingsRepository.getKioskActionButtons()
             
             _uiState.update {
@@ -58,6 +60,7 @@ class KioskManagementViewModel @Inject constructor(
                     isDefaultLauncher = isDefault,
                     isSingleWebsiteKioskEnabled = isSingleEnabled,
                     singleWebsiteUrl = singleUrl,
+                    singleWebsiteWhitelist = singleWhitelist,
                     enabledActions = enabledActions
                 )
             }
@@ -157,6 +160,13 @@ class KioskManagementViewModel @Inject constructor(
         viewModelScope.launch {
             settingsRepository.setSingleWebsiteKioskUrl(url)
             _uiState.update { it.copy(singleWebsiteUrl = url) }
+        }
+    }
+
+    fun setSingleWebsiteKioskWhitelist(whitelist: String) {
+        viewModelScope.launch {
+            settingsRepository.setSingleWebsiteKioskWhitelist(whitelist)
+            _uiState.update { it.copy(singleWebsiteWhitelist = whitelist) }
         }
     }
 

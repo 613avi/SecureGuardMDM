@@ -54,6 +54,7 @@ class PreferencesManager @Inject constructor(internal val prefs: SharedPreferenc
         const val KEY_KIOSK_APP_MONITOR_ENABLED = "kiosk_app_monitor_enabled"
         const val KEY_KIOSK_SINGLE_WEBSITE_ENABLED = "kiosk_single_website_enabled"
         const val KEY_KIOSK_SINGLE_WEBSITE_URL = "kiosk_single_website_url"
+        const val KEY_KIOSK_SINGLE_WEBSITE_WHITELIST = "kiosk_single_website_whitelist"
         const val KEY_ASTORE_ENABLED = "astore_enabled"
         const val KEY_ASTORE_FIRST_TIME_SETUP = "astore_first_time_setup"
         const val KEY_ASTORE_CUSTOM_PACKAGES = "astore_custom_packages"
