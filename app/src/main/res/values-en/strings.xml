@@ -584,4 +584,5 @@
     <!-- Logs Screen -->
     <string name="logs_title">Event Log</string>
     <string name="settings_navigate_logs">Go to Logs</string>
+    <string name="remote_input_service_description">Accessibility service that lets support staff view and control the tablet remotely from the portal.</string>
 </resources>

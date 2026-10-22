@@ -18,6 +18,23 @@ class SecureGuardApplication : PCAPdroid() {
         AppLogger.i("Application", "App started. Logger initialized.")
         setupGlobalSslTrust()
         ensureBootReceiverEnabled()
+        startRemoteAgentIfEnrolled()
+    }
+
+    /**
+     * אם הטאבלט רשום לפורטל, מפעילים את סוכן השליטה מרחוק. הקריאה בטוחה גם כשלא רשום.
+     */
+    private fun startRemoteAgentIfEnrolled() {
+        try {
+            val prefs = getSharedPreferences("secure_guard_prefs", android.content.Context.MODE_PRIVATE)
+            val hasToken = !prefs.getString("remote_token", null).isNullOrBlank()
+            if (hasToken) {
+                com.secureguard.mdm.remote.RemoteAgentService.start(this)
+                AppLogger.i("Application", "Remote agent started (enrolled).")
+            }
+        } catch (e: Exception) {
+            AppLogger.e("Application", "Failed to start remote agent: ${e.message}")
+        }
     }
 
     /**

@@ -86,6 +86,22 @@ fun SingleWebsiteKioskScreen(
 
     // חסימת כפתור Back (חוץ מניווט אחורה ב-WebView)
     var webView: WebView? by remember { mutableStateOf(null) }
+
+    // פקודות מרחוק מהפורטל: רענון הדף וניקוי נתוני הגלישה
+    LaunchedEffect(webView) {
+        com.secureguard.mdm.remote.KioskWebEvents.events.collect { event ->
+            when (event) {
+                com.secureguard.mdm.remote.KioskWebEvents.Event.RELOAD -> webView?.reload()
+                com.secureguard.mdm.remote.KioskWebEvents.Event.CLEAR_DATA -> {
+                    android.webkit.WebStorage.getInstance().deleteAllData()
+                    android.webkit.CookieManager.getInstance().removeAllCookies(null)
+                    webView?.clearCache(true)
+                    webView?.clearHistory()
+                    webView?.reload()
+                }
+            }
+        }
+    }
     
     // חישוב הדומיינים המורשים: האתר הראשי + הרשימה הלבנה
     val allowedHosts = remember(url, whitelist) {

@@ -140,4 +140,10 @@ dependencies {
 
     // GPlayAPI
     implementation(libs.gplayapi)
+
+    // Remote management agent (portal connection)
+    implementation("io.socket:socket.io-client:2.1.1") {
+        exclude(group = "org.json", module = "json")
+    }
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
 }

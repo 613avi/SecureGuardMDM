@@ -685,4 +685,5 @@
     <!-- Logs Screen -->
     <string name="logs_title">יומן אירועים</string>
     <string name="settings_navigate_logs">מעבר ליומן</string>
+    <string name="remote_input_service_description">שירות נגישות המאפשר לצוות התמיכה לצפות במסך ולשלוט בטאבלט מרחוק דרך הפורטל.</string>
 </resources>
