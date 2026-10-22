@@ -458,6 +458,7 @@
     <string name="kiosk_empty_state_button">הוסף אפליקציות עכשיו</string>
     <string name="kiosk_desc_power">כיבוי/הפעלה</string>
     <string name="kiosk_desc_settings">הגדרות</string>
+    <string name="kiosk_desc_wifi_settings">הגדרות Wi-Fi</string>
     <string name="main_service_initializing">אייבלוק הופעלה עם הדלקת המכשיר.</string>
     <string name="common_back">חזור</string>
 

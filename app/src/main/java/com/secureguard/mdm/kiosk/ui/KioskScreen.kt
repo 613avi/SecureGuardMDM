@@ -410,7 +410,7 @@ private fun KioskBottomBar(
     }
 }
 
-private fun openWifiSettings(context: Context) {
+internal fun openWifiSettings(context: Context) {
     try {
         context.startActivity(Intent(Settings.ACTION_WIFI_SETTINGS).apply {
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

@@ -44,7 +44,9 @@ class KioskLockManager @Inject constructor(
         val selectedPackages = settingsRepository.getKioskAppPackages()
         val actionButtons = settingsRepository.getKioskActionButtons()
         // חייבים להוסיף את עצמנו לרשימה כדי שנוכל להיכנס ל-Lock Task בעצמנו
-        val settingsPackage = if (actionButtons.contains("wifi") || actionButtons.contains("bluetooth")) {
+        // קיוסק אתר בודד מציג כפתור הגדרות Wi-Fi, ולכן גם הוא צריך את אפליקציית ההגדרות
+        val isSingleWebsite = settingsRepository.isSingleWebsiteKioskEnabled()
+        val settingsPackage = if (isSingleWebsite || actionButtons.contains("wifi") || actionButtons.contains("bluetooth")) {
             setOf("com.android.settings")
         } else {
             emptySet()
@@ -73,13 +75,19 @@ class KioskLockManager @Inject constructor(
     /**
      * מגדיר אילו פיצ'רים של המערכת יהיו זמינים במצב Lock Task.
      * במצב קיוסק מלא, אנחנו רוצים לחסום הכל.
+     * בקיוסק אתר בודד מתירים את תפריט הכיבוי (לחיצה ארוכה על כפתור ההפעלה).
      */
-    fun enableKioskModeFeatures() {
+    suspend fun enableKioskModeFeatures() {
         if (!dpm.isDeviceOwnerApp(context.packageName)) return
         
         try {
             // LOCK_TASK_FEATURE_NONE - חוסם הכל: כפתור בית, overview, התראות, מידע מערכת, keyguard
-            dpm.setLockTaskFeatures(adminComponent, DevicePolicyManager.LOCK_TASK_FEATURE_NONE)
+            val features = if (settingsRepository.isSingleWebsiteKioskEnabled()) {
+                DevicePolicyManager.LOCK_TASK_FEATURE_GLOBAL_ACTIONS
+            } else {
+                DevicePolicyManager.LOCK_TASK_FEATURE_NONE
+            }
+            dpm.setLockTaskFeatures(adminComponent, features)
         } catch (e: Exception) {
             e.printStackTrace()
         }

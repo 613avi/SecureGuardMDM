@@ -185,6 +185,12 @@ class KioskActivity : ComponentActivity() {
             }
 
             if (kioskLockManager.isLockTaskPermitted()) {
+                // החלת הפיצ'רים המותרים לפי מצב הקיוסק (למשל תפריט כיבוי בקיוסק אתר בודד)
+                try {
+                    kioskLockManager.enableKioskModeFeatures()
+                } catch (e: Exception) {
+                    Log.e("KioskActivity", "Failed to apply lock task features", e)
+                }
                 // בדוק אם אנחנו כבר ב-Lock Task
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
                     if (activityManager.lockTaskModeState == ActivityManager.LOCK_TASK_MODE_NONE) {

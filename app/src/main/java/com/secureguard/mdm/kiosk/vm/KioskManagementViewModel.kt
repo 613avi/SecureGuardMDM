@@ -153,6 +153,10 @@ class KioskManagementViewModel @Inject constructor(
         viewModelScope.launch {
             settingsRepository.setSingleWebsiteKioskEnabled(enabled)
             _uiState.update { it.copy(isSingleWebsiteKioskEnabled = enabled) }
+            if (_uiState.value.isKioskModeEnabled) {
+                kioskLockManager.setLockTaskPackages()
+                kioskLockManager.enableKioskModeFeatures()
+            }
         }
     }
 

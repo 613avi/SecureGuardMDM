@@ -13,6 +13,9 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.BatteryStd
+import androidx.compose.material.icons.filled.Wifi
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -48,6 +51,7 @@ fun SingleWebsiteKioskScreen(
     var showPasswordDialog by remember { mutableStateOf(false) }
     var showSettingsChoiceDialog by remember { mutableStateOf(false) }
     var isLoading by remember { mutableStateOf(true) }
+    val uiState by viewModel.uiState.collectAsState()
 
     // טעינת האייקון בצורה בטוחה (תומך ב-Adaptive Icons)
     val appIconPainter = rememberDrawablePainter(
@@ -101,7 +105,19 @@ fun SingleWebsiteKioskScreen(
         }
     }
 
-    Box(modifier = Modifier.fillMaxSize()) {
+    Column(modifier = Modifier.fillMaxSize()) {
+        SingleWebsiteTopBar(
+            batteryLevel = uiState.batteryLevel,
+            appIconPainter = appIconPainter,
+            onWifiClick = { openWifiSettings(context) },
+            onAdminClick = { showPasswordDialog = true }
+        )
+
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+        ) {
         // WebView
         AndroidView(
             factory = { ctx ->
@@ -148,24 +164,6 @@ fun SingleWebsiteKioskScreen(
                 color = MaterialTheme.colorScheme.primary
             )
         }
-
-        // Floating App Icon (Top Right)
-        Box(
-            modifier = Modifier
-                .padding(16.dp)
-                .size(48.dp)
-                .clip(CircleShape)
-                .background(Color.White.copy(alpha = 0.8f))
-                .clickable { showPasswordDialog = true }
-                .align(Alignment.TopEnd),
-            contentAlignment = Alignment.Center
-        ) {
-            Image(
-                painter = appIconPainter,
-                contentDescription = stringResource(id = R.string.kiosk_content_desc_admin),
-                modifier = Modifier.size(32.dp),
-                contentScale = ContentScale.Fit
-            )
         }
 
         // Dialogs
@@ -197,6 +195,71 @@ fun SingleWebsiteKioskScreen(
                     }
                 }
             )
+        }
+    }
+}
+
+@Composable
+private fun SingleWebsiteTopBar(
+    batteryLevel: Int,
+    appIconPainter: androidx.compose.ui.graphics.painter.Painter,
+    onWifiClick: () -> Unit,
+    onAdminClick: () -> Unit
+) {
+    Surface(
+        modifier = Modifier.fillMaxWidth(),
+        color = MaterialTheme.colorScheme.surface,
+        shadowElevation = 2.dp
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 12.dp, vertical = 4.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            // כפתור ניהול (מוגן בסיסמה)
+            Box(
+                modifier = Modifier
+                    .size(36.dp)
+                    .clip(CircleShape)
+                    .clickable(onClick = onAdminClick),
+                contentAlignment = Alignment.Center
+            ) {
+                Image(
+                    painter = appIconPainter,
+                    contentDescription = stringResource(id = R.string.kiosk_content_desc_admin),
+                    modifier = Modifier.size(28.dp),
+                    contentScale = ContentScale.Fit
+                )
+            }
+
+            Spacer(modifier = Modifier.weight(1f))
+
+            // כפתור הגדרות Wi-Fi
+            IconButton(onClick = onWifiClick, modifier = Modifier.size(36.dp)) {
+                Icon(
+                    Icons.Default.Wifi,
+                    contentDescription = stringResource(id = R.string.kiosk_desc_wifi_settings),
+                    tint = MaterialTheme.colorScheme.primary
+                )
+            }
+
+            // מצב סוללה
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(
+                    Icons.Default.BatteryStd,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurface,
+                    modifier = Modifier.size(20.dp)
+                )
+                Text(
+                    text = "$batteryLevel%",
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Medium,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+            }
         }
     }
 }
