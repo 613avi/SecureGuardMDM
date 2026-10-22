@@ -101,14 +101,14 @@ class ScreenStreamer(
         stop()
         this.mode = "accessibility"; this.maxWidth = maxWidth; this.quality = quality; this.fps = fps.coerceAtMost(3)
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R || RemoteInputService.instance == null) {
-            onState("error", "accessibility_unavailable")
+            onState("unavailable", "accessibility_unavailable")
             return
         }
         onState("streaming", "accessibility")
         job = scope.launch {
             while (isActive) {
                 val svc = RemoteInputService.instance
-                if (svc == null) { onState("error", "accessibility_unavailable"); break }
+                if (svc == null) { onState("unavailable", "accessibility_unavailable"); break }
                 svc.captureScreen { bmp -> if (bmp != null) setLatest(scaleIfNeeded(bmp)) }
                 emitLatest()
                 delay((1000L / this@ScreenStreamer.fps).coerceAtLeast(350))

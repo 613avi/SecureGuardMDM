@@ -66,7 +66,7 @@ class RemoteAgentService : Service() {
                 if (data != null) startProjectionStream(code, data)
             }
             ACTION_PROJECTION_DENIED -> {
-                emitScreenState("error", "consent_denied")
+                emitScreenState("denied", "consent_denied")
             }
             ACTION_STOP -> { stopSelf(); return START_NOT_STICKY }
         }
@@ -244,7 +244,11 @@ class RemoteAgentService : Service() {
 
     private fun onInput(args: Array<out Any>) {
         val obj = args.firstOrNull() as? JSONObject ?: return
-        val svc = RemoteInputService.instance ?: run { emitScreenState("error", "no_accessibility"); return }
+        // Don't push a screen:state error here — that would reset the viewer mid-session.
+        val svc = RemoteInputService.instance ?: run {
+            AppLogger.w(TAG, "Input ignored: accessibility service not running")
+            return
+        }
         when (obj.optString("type")) {
             "tap" -> svc.tap(obj.optDouble("x"), obj.optDouble("y"))
             "long_press" -> svc.longPress(obj.optDouble("x"), obj.optDouble("y"), obj.optLong("durationMs", 700))
