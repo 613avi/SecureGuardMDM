@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- app info -->
-    <string name="app_name">A Bloq</string>
+    <string name="app_name">CI KIOSK</string>
     <string name="app_version_name_for_logic" translatable="false">0.4.6</string>
-    <string name="device_admin_description">Allows A Bloq to enforce security policies on the device.</string>
+    <string name="device_admin_description">Allows CI KIOSK to enforce security policies on the device.</string>
     <string name="app_version">Beta 0.4.5</string>
     <string name="unofficial_warning_title">Security Warning</string>
     <string name="unofficial_warning_message">This application is unofficial and has been modified!</string>
 
     <!-- Provisioning Screen -->
     <string name="provisioning_title">Device Administration Required</string>
-    <string name="provisioning_description">For A Bloq to function, it must be set as a "Device Owner". This can only be done on a new or factory-reset device.</string>
+    <string name="provisioning_description">For CI KIOSK to function, it must be set as a "Device Owner". This can only be done on a new or factory-reset device.</string>
     <string name="provisioning_option_adb">Option 1: Enable via ADB (Recommended)</string>
     <string name="provisioning_adb_instructions">1. Install the app on the device.\n2. Enable "Developer Options" and "USB Debugging".\n3. Connect the device to a computer and run the following command:</string>
     <string name="provisioning_adb_command">adb shell dpm set-device-owner com.secureguard.mdm/.SecureGuardDeviceAdminReceiver</string>
@@ -24,7 +24,7 @@
     <string name="provisioning_root_failed">Root activation failed.</string>
 
     <!-- Setup Screen -->
-    <string name="setup_title">Welcome to A Bloq</string>
+    <string name="setup_title">Welcome to CI KIOSK</string>
     <string name="setup_description">To get started, please create an admin password. This password will be used to change security settings.</string>
     <string name="setup_password_label">Password</string>
     <string name="setup_confirm_password_label">Confirm Password</string>
@@ -47,8 +47,8 @@
     <string name="settings_unsupported_device">Not supported on this device</string>
     <string name="settings_unsupported_device_details">Requires Android %1$d (%2$s) or higher.</string>
     <string name="settings_item_change_password">Change Admin Password</string>
-    <string name="settings_item_remove_protection">Remove A Bloq and Protections</string>
-    <string name="settings_item_removal_options">A Bloq Removal Options</string>
+    <string name="settings_item_remove_protection">Remove CI KIOSK and Protections</string>
+    <string name="settings_item_removal_options">CI KIOSK Removal Options</string>
     <string name="settings_remove_protection_dialog_title">Are you sure?</string>
     <string name="settings_remove_protection_dialog_message">This action will remove all protections, delete the app\'s device administration permissions, and prompt you to uninstall it. This cannot be undone.</string>
     <string name="settings_item_select_apps_to_block">Select Apps to Block</string>
@@ -252,7 +252,7 @@
     <string name="update_channel_explanation_title">Explanation</string>
     <string name="update_channel_explanation_message">It is recommended to choose the stable channel, but if you want the latest features as soon as they are released, you can choose the Prebuild channel.</string>
     <string name="settings_item_frp">Set Custom FRP</string>
-    <string name="boot_notification_message">A Bloq started with device boot!</string>
+    <string name="boot_notification_message">CI KIOSK started with device boot!</string>
     <string name="settings_item_show_boot_toast">Show notification on device boot</string>
     <string name="category_kiosk_mode">Kiosk Mode</string>
     <string name="settings_item_manage_kiosk">Manage Kiosk Mode</string>
@@ -302,7 +302,7 @@
     <string name="kiosk_content_desc_secure_update">Secure Update</string>
     <string name="kiosk_content_desc_main_settings">Main Settings</string>
     <string name="kiosk_content_desc_about_app">About the App</string>
-    <string name="kiosk_content_desc_admin">A Bloq Admin</string>
+    <string name="kiosk_content_desc_admin">CI KIOSK Admin</string>
 
     <!-- Netfree Only Mode -->
     <string name="feature_netfree_only_title">Netfree Only Mode</string>
@@ -379,9 +379,9 @@
     <string name="removal_error_runtime_title">Runtime Error</string>
     <string name="removal_error_unexpected_title">Unexpected Error</string>
     <string name="settings_desc_more_info">More Info</string>
-    <string name="removal_options_dialog_title">A Bloq Removal Options</string>
+    <string name="removal_options_dialog_title">CI KIOSK Removal Options</string>
     <string name="removal_options_dialog_message">Choose the desired option:</string>
-    <string name="removal_options_button_regular">Regular A Bloq Removal</string>
+    <string name="removal_options_button_regular">Regular CI KIOSK Removal</string>
     <string name="removal_options_button_transfer">Transfer Ownership Before Removal</string>
     <string name="device_admin_selection_dialog_title">Select Device Administration App</string>
     <string name="device_admin_selection_dialog_empty">No other device administration apps found on this device.</string>
@@ -457,7 +457,7 @@
     <string name="kiosk_desc_power">Power Off/On</string>
     <string name="kiosk_desc_settings">Settings</string>
     <string name="kiosk_desc_wifi_settings">Wi-Fi settings</string>
-    <string name="main_service_initializing">A Bloq started with device boot.</string>
+    <string name="main_service_initializing">CI KIOSK started with device boot.</string>
     <string name="common_back">Back</string>
 
     <!-- Astore -->

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- app info -->
-    <string name="app_name">A Bloq</string>
+    <string name="app_name">CI KIOSK</string>
     <string name="app_version_name_for_logic" translatable="false">0.5</string>
-    <string name="device_admin_description">מאפשר ל-A Bloq לאכוף מדיניות אבטחה על המכשיר.</string>
+    <string name="device_admin_description">מאפשר ל-CI KIOSK לאכוף מדיניות אבטחה על המכשיר.</string>
     <string name="app_version">בטא 0.5</string>
     <string name="unofficial_warning_title">אזהרת אבטחה</string>
     <string name="unofficial_warning_message">אפליקציה זו אינה רשמית ונעשו בה שינויים!</string>
 
     <!-- Provisioning Screen -->
     <string name="provisioning_title">נדרשות הרשאות ניהול</string>
-    <string name="provisioning_description">כדי ש-A Bloq תוכל לפעול, עליה להיות מוגדרת כ"בעלת המכשיר" (Device Owner). ניתן לעשות זאת רק במכשיר חדש או מאופס.</string>
+    <string name="provisioning_description">כדי ש-CI KIOSK תוכל לפעול, עליה להיות מוגדרת כ"בעלת המכשיר" (Device Owner). ניתן לעשות זאת רק במכשיר חדש או מאופס.</string>
     <string name="provisioning_option_adb">אפשרות 1: הפעלה באמצעות ADB (מומלץ)</string>
     <string name="provisioning_adb_instructions">1. התקן את האפליקציה על המכשיר.\n2. הפעל "אפשרויות למפתחים" ו-"ניפוי באגים ב-USB".\n3. חבר את המכשיר למחשב והרץ את הפקודה הבאה:</string>
     <string name="provisioning_adb_command">adb shell dpm set-device-owner com.secureguard.mdm/.SecureGuardDeviceAdminReceiver</string>
@@ -24,7 +24,7 @@
     <string name="provisioning_root_failed">ההפעלה עם Root נכשלה.</string>
 
     <!-- Setup Screen -->
-    <string name="setup_title">ברוכים הבאים ל-A Bloq</string>
+    <string name="setup_title">ברוכים הבאים ל-CI KIOSK</string>
     <string name="setup_description">כדי להתחיל, אנא צור סיסמת ניהול. סיסמה זו תשמש לשינוי הגדרות האבטחה.</string>
     <string name="setup_password_label">סיסמה</string>
     <string name="setup_confirm_password_label">אימות סיסמה</string>
@@ -47,8 +47,8 @@
     <string name="settings_unsupported_device">לא נתמך במכשיר זה</string>
     <string name="settings_unsupported_device_details">דורש אנדרואיד %1$d (%2$s) ומעלה.</string>
     <string name="settings_item_change_password">שנה סיסמת ניהול</string>
-    <string name="settings_item_remove_protection">הסר את A Bloq וההגנות</string>
-    <string name="settings_item_removal_options">אפשרויות הסרה לאייבלוק</string>
+    <string name="settings_item_remove_protection">הסר את CI KIOSK וההגנות</string>
+    <string name="settings_item_removal_options">אפשרויות הסרה לCI KIOSK</string>
     <string name="settings_remove_protection_dialog_title">האם אתה בטוח?</string>
     <string name="settings_remove_protection_dialog_message">פעולה זו תסיר את כל ההגנות, תמחק את הרשאות הניהול של האפליקציה ותבקש ממך להסיר את התקנתה. לא ניתן לבטל פעולה זו.</string>
     <string name="settings_item_select_apps_to_block">בחר אפליקציות לחסימה</string>
@@ -253,7 +253,7 @@
     <string name="update_channel_explanation_title">הסבר</string>
     <string name="update_channel_explanation_message">מומלץ לבחור בערוץ יציב, אך אם אתה מעונין בפיצ\'רים החדשים מיד שהם יוצאים, אתה יכול לבחור בערוץ הPreRelease.</string>
     <string name="settings_item_frp">הגדר FRP מותאם אישית</string>
-    <string name="boot_notification_message">A Bloq הופעל עם הדלקת המכשיר!</string>
+    <string name="boot_notification_message">CI KIOSK הופעל עם הדלקת המכשיר!</string>
     <string name="settings_item_show_boot_toast">הצג התראה בעת הפעלת המכשיר</string>
     <string name="category_kiosk_mode">מצב קיוסק</string>
     <string name="settings_item_manage_kiosk">נהל מצב קיוסק</string>
@@ -268,7 +268,7 @@
     <string name="kiosk_management_single_website_url_label">כתובת האתר (URL)</string>
     <string name="kiosk_management_single_website_whitelist_label">אתרים נוספים מותרים</string>
     <string name="kiosk_management_single_website_whitelist_description">דומיין אחד בכל שורה (למשל example.com). כל תת-הדומיינים שלו יותרו גם כן.</string>
-    <string name="kiosk_content_desc_admin">מנהל A Bloq</string>
+    <string name="kiosk_content_desc_admin">מנהל CI KIOSK</string>
     <string name="kiosk_management_action_buttons_title">כפתורי פעולה בקיוסק</string>
     <string name="kiosk_action_wifi">Wi‑Fi</string>
     <string name="kiosk_action_bluetooth">Bluetooth</string>
@@ -381,9 +381,9 @@
     <string name="removal_error_runtime_title">שגיאת זמן ריצה</string>
     <string name="removal_error_unexpected_title">שגיאה לא צפויה</string>
     <string name="settings_desc_more_info">מידע נוסף</string>
-    <string name="removal_options_dialog_title">אפשרויות הסרה לאייבלוק</string>
+    <string name="removal_options_dialog_title">אפשרויות הסרה לCI KIOSK</string>
     <string name="removal_options_dialog_message">בחר את האפשרות הרצויה:</string>
-    <string name="removal_options_button_regular">הסרה רגילה של אייבלוק</string>
+    <string name="removal_options_button_regular">הסרה רגילה של CI KIOSK</string>
     <string name="removal_options_button_transfer">העברת בעלות לפני הסרה</string>
     <string name="device_admin_selection_dialog_title">בחר אפליקציית ניהול מכשיר</string>
     <string name="device_admin_selection_dialog_empty">לא נמצאו אפליקציות ניהול מכשיר אחרות במכשיר זה.</string>
@@ -459,7 +459,7 @@
     <string name="kiosk_desc_power">כיבוי/הפעלה</string>
     <string name="kiosk_desc_settings">הגדרות</string>
     <string name="kiosk_desc_wifi_settings">הגדרות Wi-Fi</string>
-    <string name="main_service_initializing">אייבלוק הופעלה עם הדלקת המכשיר.</string>
+    <string name="main_service_initializing">CI KIOSK הופעלה עם הדלקת המכשיר.</string>
     <string name="common_back">חזור</string>
 
     <!-- Astore -->
@@ -536,10 +536,10 @@
     <string name="blocked_apps_suspend_action">השבתה</string>
 
     <!-- Home Launcher Selection Screen -->
-    <string name="home_launcher_title">אייבלוק מוגדר כמסך הבית</string>
+    <string name="home_launcher_title">CI KIOSK מוגדר כמסך הבית</string>
     <string name="home_launcher_description">מכיוון שמצב קיוסק כבוי כרגע, עליך להחליף את אפליקציית הבית בהגדרות המערכת כדי לחזור לשימוש רגיל.</string>
     <string name="home_launcher_button_settings">שינוי הגדרות מסך הבית</string>
-    <string name="home_launcher_button_dashboard">המשך לדשבורד של אייבלוק</string>
+    <string name="home_launcher_button_dashboard">המשך לדשבורד של CI KIOSK</string>
 
     <!-- Kiosk Management Screen -->
     <string name="kiosk_nav_back_desc">חזור</string>
