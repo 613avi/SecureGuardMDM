@@ -54,7 +54,14 @@ class RemoteAgentService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        startForeground(NOTIF_ID, buildNotification())
+        // Start as a plain specialUse FGS. The mediaProjection type is only asserted
+        // later (after consent) in startProjectionStream — declaring it here would
+        // trigger the projection permission/app-op check at startup and crash.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            startForeground(NOTIF_ID, buildNotification(), ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE)
+        } else {
+            startForeground(NOTIF_ID, buildNotification())
+        }
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {

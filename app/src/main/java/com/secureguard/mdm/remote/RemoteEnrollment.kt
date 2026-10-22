@@ -83,11 +83,14 @@ class RemoteEnrollment @Inject constructor(
     companion object {
         private const val TAG = "RemoteEnrollment"
 
+        // One-shot REST client for enrollment. socket.io builds its own client, so
+        // this one must use finite timeouts (a stalled POST must fail, not hang).
         val httpClient: OkHttpClient by lazy {
             OkHttpClient.Builder()
-                .connectTimeout(20, TimeUnit.SECONDS)
-                .readTimeout(0, TimeUnit.MILLISECONDS) // websocket
-                .pingInterval(20, TimeUnit.SECONDS)
+                .connectTimeout(15, TimeUnit.SECONDS)
+                .readTimeout(20, TimeUnit.SECONDS)
+                .writeTimeout(20, TimeUnit.SECONDS)
+                .callTimeout(40, TimeUnit.SECONDS)
                 .build()
         }
 
